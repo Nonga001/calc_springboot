@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Calculator App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Welcome, <span th:text="${username}"></span>!</h2>
+    <a th:href="@{/logout}" class="logout">Logout</a>
+    <h3>Calculator</h3>
+    <form th:action="@{/dashboard}" method="post" class="calc-form">
+        <input type="number" step="any" name="num1" th:value="${num1}" required />
+        <select name="op" th:value="${op}">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" step="any" name="num2" th:value="${num2}" required />
+        <button type="submit">Calculate</button>
+    </form>
+    <div th:if="${result != null}" class="result">Result: <span th:text="${result}"></span></div>
+    <div th:if="${error}" class="error">[[${error}]]</div>
+</div>
+</body>
+</html> 
